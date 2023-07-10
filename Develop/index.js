@@ -63,7 +63,52 @@ function writeToFile(fileName, data) {
   }
 
 // TODO: Create a function to initialize app
-
-
+function init() {
+    inquirer
+      .prompt(questions)
+      .then((answers) => {
+        // Generate the README content
+        const readmeContent = `
+  # ${answers.title}
+  
+  ## Description
+  ${answers.description}
+  
+  ## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
+  
+  ## Installation
+  ${answers.installation}
+  
+  ## Usage
+  ${answers.usage}
+  
+  ## License
+  This application is covered under the ${answers.license} license.
+  
+  ## Contributing
+  ${answers.contributing}
+  
+  ## Tests
+  ${answers.tests}
+  
+  ## Questions
+  For additional questions, please contact me:
+  GitHub: [${answers.username}](https://github.com/${answers.username})
+  Email: ${answers.email}
+  `;
+  
+        writeToFile('README.md', readmeContent);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  
 // Function call to initialize app
 init();
