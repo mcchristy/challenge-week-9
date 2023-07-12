@@ -67,7 +67,7 @@ function init() {
     inquirer
       .prompt(questions)
       .then((answers) => {
-        // Generate the README content
+        
         const readmeContent = `
   # ${answers.title}
   
